@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflation Calculator</title>
+    <style>
+        html,
+        body {
+            background-color: #86A789;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .inputs {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            background-color: #B2C8BA;
+        }
+
+        .commonInputFields {
+            border-right: 0.5px solid black;
+            border-left: 0.5px solid black;
+            padding: 2%;
+        }
+
+        .inputContainer {
+            display: flex;
+        }
+
+        .inputContainer input {
+            border-radius: 10px;
+            width: 70%;
+            font-size: 2.5rem;
+            margin: auto;
+            border: none;
+            margin: none;
+            text-align: center;
+            color: rgb(58, 58, 58);
+        }
+
+        .commonInputFields span p {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 2rem;
+            font-weight: 900;
+            font-family: sans-serif;
+            text-align: center;
+            letter-spacing: 4px;
+            color: rgb(35, 35, 35);
+        }
+
+        @media screen and (max-width: 778px) {
+            .inputs {
+                flex-direction: column;
+            }
+
+            .commonInputFields {
+                margin-bottom: 10px;
+            }
+        }
+
+        .btncontainer {
+            display: flex;
+            margin-top: 20px;
+            margin-bottom: 0px;
+        }
+
+        #myBtn {
+            margin: auto;
+            border-radius: 20px;
+            width: 130px;
+            height: 60px;
+            border: none;
+            outline: none;
+            font-size: 1.5rem;
+            background-color: #245528;
+            color: white;
+            box-shadow: inset -5px -5px 15px #0c5b2a;
+        }
+
+        #myBtn2 {
+            margin: auto;
+            border-radius: 20px;
+            width: 130px;
+            height: 60px;
+            border: none;
+            outline: none;
+            font-size: 1.5rem;
+            background-color: #245528;
+            color: white;
+            box-shadow: inset -5px -5px 15px #0c5b2a;
+        }
+    </style>
+</head>
+
+
+<body>
+    <p>Inflation Calculator</p>
+    <div class="inputs">
+        <div class="inputField1 commonInputFields">
+            <span>
+                <p>Amount</p>
+            </span>
+            <div class="inputContainer">
+                <input type="number" id="amountField">
+            </div>
+        </div>
+        <div class="inputField2 commonInputFields">
+            <span>
+                <p>Time</p>
+            </span>
+            <div class="inputContainer">
+                <input type="number" id="timeField">
+            </div>
+        </div>
+        <div class="inputField3 commonInputFields">
+            <span>
+                <p>Inflation Rate</p>
+            </span>
+            <div class="inputContainer">
+                <input type="number" value="7" id="inflationField">
+            </div>
+        </div>
+    </div>
+    <div class="btncontainer">
+        <button onclick=resetEverything() id="myBtn2">Reset</button>
+        <button onclick=calc() id="myBtn">Calculate</button>
+
+    </div>
+    <div class="CurrentVal">
+        <p id="normalTxt">Actual value <span id="currentVal"> </span></p>
+        <hr>
+        <p id="normalTxt">Equals value <span id="equals"></span></p>
+
+    </div>
+
+
+
+    <script>
+        function resetEverything() {
+            document.getElementById("amountField").value='';
+            document.getElementById("timeField").value='';
+        }
+        function calc() {
+            var amount = document.getElementById("amountField").value;
+            var time = document.getElementById("timeField").value;
+            var inflation = document.getElementById("inflationField").value;
+            var res = (1 + (inflation / 100)) ** time
+            var curVal = (amount / res).toFixed(2);
+            var equalsVal = (amount * res).toFixed(2);
+            if (amount == '' || inflation == '') {
+                alert("Please Fill all the fields")
+            }
+            else {
+                document.getElementById("currentVal").innerText = curVal
+                document.getElementById("equals").innerText = equalsVal
+            }
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>
